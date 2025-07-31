@@ -71,7 +71,7 @@ app.add_middleware(SecurityMiddleware)
 # Add trusted host middleware for enhanced safety
 app.add_middleware(
     TrustedHostMiddleware, 
-    allowed_hosts=["localhost", "127.0.0.1", "*.emergent.sh"]
+    allowed_hosts=["localhost", "127.0.0.1", "*.emergent.sh", "*.emergentagent.com"]
 )
 
 # CORS configuration - CRITICAL SECURITY FIX (no more allow all origins)
