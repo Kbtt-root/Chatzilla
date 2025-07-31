@@ -5,7 +5,7 @@
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#3a76f0" />
-    <meta name="description" content="Signal - Secure, Private Messaging" />
+    <meta name="description" content="Chatzilla - Secure, Private Messaging" />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     
@@ -65,13 +65,13 @@
         }
     </style>
     
-    <title>Signal - Private Messenger</title>
+    <title>Chatzilla - Private Messenger</title>
 </head>
 <body>
     <noscript>
         <div style="padding: 20px; text-align: center; font-family: Arial, sans-serif;">
             <h2>JavaScript Required</h2>
-            <p>Signal requires JavaScript to function. Please enable JavaScript in your browser settings.</p>
+            <p>Chatzilla requires JavaScript to function. Please enable JavaScript in your browser settings.</p>
         </div>
     </noscript>
     
@@ -148,7 +148,7 @@
             
             // Console warning
             console.warn('%cSTOP!', 'color: red; font-size: 50px; font-weight: bold;');
-            console.warn('%cThis is a browser feature intended for developers. If someone told you to copy-paste something here to enable a Signal feature or "hack" someone\'s account, it is a scam and will give them access to your Signal account.', 'color: red; font-size: 16px;');
+            console.warn('%cThis is a browser feature intended for developers. If someone told you to copy-paste something here to enable a Chatzilla feature or "hack" someone\'s account, it is a scam and will give them access to your Chatzilla account.', 'color: red; font-size: 16px;');
             
             // Memory protection - clear clipboard periodically
             setInterval(function() {
@@ -216,10 +216,10 @@
                 WebGLRenderingContext.prototype.getParameter = function(parameter) {
                     // Return spoofed values for common fingerprinting parameters
                     if (parameter === this.RENDERER) {
-                        return 'Signal Secure Renderer';
+                        return 'Chatzilla Secure Renderer';
                     }
                     if (parameter === this.VENDOR) {
-                        return 'Signal Security';
+                        return 'Chatzilla Security';
                     }
                     return getParameter.call(this, parameter);
                 };

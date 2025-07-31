@@ -1,4 +1,4 @@
-// Security utilities for Signal clone
+// Security utilities for Chatzilla clone
 'use strict';
 
 /**
@@ -394,7 +394,7 @@ class SecurityManager {
     secureSet(key, value) {
         try {
             const encrypted = this.encryptData(JSON.stringify(value));
-            localStorage.setItem(`signal_${key}`, encrypted);
+            localStorage.setItem(`chatzilla_${key}`, encrypted);
             return true;
         } catch (e) {
             this.logSecurityEvent('Secure storage failed', { key, error: e.message });
@@ -404,7 +404,7 @@ class SecurityManager {
 
     secureGet(key) {
         try {
-            const encrypted = localStorage.getItem(`signal_${key}`);
+            const encrypted = localStorage.getItem(`chatzilla_${key}`);
             if (!encrypted) return null;
             
             const decrypted = this.decryptData(encrypted);
@@ -417,7 +417,7 @@ class SecurityManager {
 
     secureRemove(key) {
         try {
-            localStorage.removeItem(`signal_${key}`);
+            localStorage.removeItem(`chatzilla_${key}`);
             return true;
         } catch (e) {
             this.logSecurityEvent('Secure removal failed', { key, error: e.message });
@@ -456,14 +456,14 @@ class SecurityManager {
         try {
             // Clear localStorage
             Object.keys(localStorage).forEach(key => {
-                if (key.startsWith('signal_')) {
+                if (key.startsWith('chatzilla_')) {
                     localStorage.removeItem(key);
                 }
             });
 
             // Clear sessionStorage
             Object.keys(sessionStorage).forEach(key => {
-                if (key.startsWith('signal_')) {
+                if (key.startsWith('chatzilla_')) {
                     sessionStorage.removeItem(key);
                 }
             });

@@ -69,11 +69,11 @@ const Sidebar = ({
     <div className="sidebar">
       <div className="sidebar-header">
         <div className="sidebar-header-left">
-          <div className="signal-logo">
-            <div className="signal-icon">
+          <div className="chatzilla-logo">
+            <div className="chatzilla-icon">
               <Shield size={24} />
             </div>
-            <span>Signal</span>
+            <span>Chatzilla</span>
             <div className="security-badge" title="Maximum Security Enabled">
               <Lock size={12} />
             </div>
@@ -183,7 +183,7 @@ const ChatWindow = ({ contact, messages, onSendMessage, securityStatus }) => {
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
   const [encryptionDetails, setEncryptionDetails] = useState({
-    algorithm: 'Signal Protocol',
+    algorithm: 'Chatzilla Protocol',
     keyExchange: 'X3DH',
     forwardSecrecy: 'Double Ratchet'
   });
@@ -429,7 +429,7 @@ const WelcomeScreen = () => {
         <div className="welcome-icon">
           <Shield size={80} />
         </div>
-        <h1>Welcome to Signal</h1>
+        <h1>Welcome to Chatzilla</h1>
         <p>
           Select a conversation from your contacts to start messaging.
           <br />
@@ -441,7 +441,7 @@ const WelcomeScreen = () => {
             <Lock size={24} />
             <div className="feature-text">
               <span>End-to-end encrypted</span>
-              <small>Signal Protocol with Perfect Forward Secrecy</small>
+              <small>Chatzilla Protocol with Perfect Forward Secrecy</small>
             </div>
           </div>
           <div className="feature">
@@ -828,7 +828,7 @@ const ProfileModal = ({ onClose }) => {
             <div className="setting-item">
               <div className="setting-info">
                 <span>Encryption Protocol</span>
-                <small>Signal Protocol with Double Ratchet</small>
+                <small>Chatzilla Protocol with Double Ratchet</small>
               </div>
               <div className="protocol-status active">
                 <Shield size={14} />

@@ -1,8 +1,8 @@
 /* Global Styles and Variables */
 :root {
-  --signal-blue: #3a76f0;
-  --signal-blue-dark: #2c5de5;
-  --signal-blue-light: #4d84ff;
+  --chatzilla-blue: #3a76f0;
+  --chatzilla-blue-dark: #2c5de5;
+  --chatzilla-blue-light: #4d84ff;
   --security-green: #00d848;
   --warning-orange: #ff9500;
   --danger-red: #ff3b30;
@@ -19,7 +19,7 @@
   --shadow-hover: rgba(0, 0, 0, 0.15);
   
   /* Message colors */
-  --message-sent-bg: var(--signal-blue);
+  --message-sent-bg: var(--chatzilla-blue);
   --message-sent-text: #ffffff;
   --message-received-bg: #f1f3f4;
   --message-received-text: var(--text-primary);
@@ -79,7 +79,7 @@ body {
   left: 0;
   right: 0;
   height: 28px;
-  background: linear-gradient(90deg, var(--security-green), var(--signal-blue));
+  background: linear-gradient(90deg, var(--security-green), var(--chatzilla-blue));
   display: flex;
   align-items: center;
   justify-content: center;
@@ -118,7 +118,7 @@ body {
 }
 
 /* Main Container */
-.signal-container {
+.chatzilla-container {
   display: flex;
   height: 100vh;
   background-color: var(--bg-primary);
@@ -150,20 +150,20 @@ body {
   align-items: center;
 }
 
-.signal-logo {
+.chatzilla-logo {
   display: flex;
   align-items: center;
   gap: 12px;
   font-size: 20px;
   font-weight: 600;
-  color: var(--signal-blue);
+  color: var(--chatzilla-blue);
   position: relative;
 }
 
-.signal-icon {
+.chatzilla-icon {
   width: 32px;
   height: 32px;
-  background-color: var(--signal-blue);
+  background-color: var(--chatzilla-blue);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -234,7 +234,7 @@ body {
 
 .search-box:focus-within {
   background-color: var(--bg-primary);
-  box-shadow: 0 0 0 2px var(--signal-blue);
+  box-shadow: 0 0 0 2px var(--chatzilla-blue);
 }
 
 .search-box input {
@@ -286,7 +286,7 @@ body {
 .locked-overlay button {
   margin-top: 16px;
   padding: 8px 16px;
-  background: var(--signal-blue);
+  background: var(--chatzilla-blue);
   color: white;
   border: none;
   border-radius: 8px;
@@ -308,7 +308,7 @@ body {
 }
 
 .contact-item.active {
-  background-color: var(--signal-blue);
+  background-color: var(--chatzilla-blue);
   color: white;
 }
 
@@ -429,7 +429,7 @@ body {
 }
 
 .unread-badge {
-  background-color: var(--signal-blue);
+  background-color: var(--chatzilla-blue);
   color: white;
   font-size: 11px;
   font-weight: 600;
@@ -632,7 +632,7 @@ body {
 
 .message-sender {
   font-size: 12px;
-  color: var(--signal-blue);
+  color: var(--chatzilla-blue);
   margin-bottom: 4px;
   font-weight: 500;
 }
@@ -816,7 +816,7 @@ body {
   width: 32px;
   height: 32px;
   border: none;
-  background-color: var(--signal-blue);
+  background-color: var(--chatzilla-blue);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -832,7 +832,7 @@ body {
 }
 
 .send-btn:hover.active {
-  background-color: var(--signal-blue-dark);
+  background-color: var(--chatzilla-blue-dark);
   transform: scale(1.05);
 }
 
@@ -904,7 +904,7 @@ body {
 }
 
 .welcome-icon {
-  color: var(--signal-blue);
+  color: var(--chatzilla-blue);
   margin-bottom: 24px;
 }
 
@@ -938,7 +938,7 @@ body {
 }
 
 .feature svg {
-  color: var(--signal-blue);
+  color: var(--chatzilla-blue);
   flex-shrink: 0;
   margin-top: 2px;
 }
@@ -1175,7 +1175,7 @@ body {
 }
 
 .toggle-btn.active {
-  background-color: var(--signal-blue);
+  background-color: var(--chatzilla-blue);
   color: white;
 }
 
@@ -1190,7 +1190,7 @@ body {
 }
 
 .toggle-switch.active {
-  background-color: var(--signal-blue);
+  background-color: var(--chatzilla-blue);
 }
 
 .toggle-switch::after {
@@ -1357,7 +1357,7 @@ body {
 
 .verify-btn {
   padding: 6px;
-  background: var(--signal-blue);
+  background: var(--chatzilla-blue);
   color: white;
   border: none;
   border-radius: 6px;
@@ -1386,7 +1386,7 @@ body {
   right: -2px;
   width: 16px;
   height: 16px;
-  background-color: var(--signal-blue);
+  background-color: var(--chatzilla-blue);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -1412,7 +1412,7 @@ body {
   position: absolute;
   top: 12px;
   right: 12px;
-  background-color: var(--signal-blue);
+  background-color: var(--chatzilla-blue);
   color: white;
   font-size: 11px;
   font-weight: 600;
