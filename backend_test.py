@@ -222,7 +222,7 @@ class SecurityTester:
                 self.log_test("GET /status with Auth", False, f"Status: {response.status_code}")
             
             # Test POST /status
-            status_data = {"client_name": "test_client"}
+            status_data = {"client_name": "Test Client"}  # Fixed: no underscore
             response = self.session.post(f"{BACKEND_URL}/status", json=status_data, headers=headers)
             if response.status_code == 200:
                 self.log_test("POST /status with Auth", True, "Authenticated access successful")
