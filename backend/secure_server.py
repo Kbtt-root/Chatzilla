@@ -12,6 +12,17 @@ import logging
 import uuid
 from pathlib import Path
 from dotenv import load_dotenv
+from cryptography.fernet import Fernet
+import base64
+import os
+
+# Generate a key ONCE, then store it securely (do not regenerate every run!)
+FERNET_KEY = os.environ.get('FERNET_KEY')
+if not FERNET_KEY:
+    # On first run, generate and store this securely -- don't do this in production!
+    FERNET_KEY = Fernet.generate_key()
+    print(f"Generated encryption key: {FERNET_KEY.decode()}")
+fernet = Fernet(FERNET_KEY)
 
 # Import security middleware
 from security_middleware import (
