@@ -351,14 +351,20 @@ async def http_exception_handler(request: Request, exc: HTTPException):
     """Custom HTTP exception handler"""
     logger.warning(f"HTTP {exc.status_code}: {exc.detail} - Path: {request.url.path}")
     
-    return {"error": exc.detail, "status_code": exc.status_code}
+    return JSONResponse(
+        status_code=exc.status_code,
+        content={"error": exc.detail, "status_code": exc.status_code}
+    )
 
 @app.exception_handler(Exception)
 async def general_exception_handler(request: Request, exc: Exception):
     """General exception handler"""
     logger.error(f"Unhandled exception: {exc} - Path: {request.url.path}")
     
-    return {"error": "Internal server error", "status_code": 500}
+    return JSONResponse(
+        status_code=500,
+        content={"error": "Internal server error", "status_code": 500}
+    )
 
 # Startup event
 @app.on_event("startup")
