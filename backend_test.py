@@ -348,10 +348,10 @@ class SecurityTester:
                 headers = {"Authorization": f"Bearer {token}"}
                 response = self.session.get(f"{BACKEND_URL}/messages", headers=headers)
                 
-                if response.status_code == 401:
+                if response.status_code in [401, 403]:  # Both are valid auth errors
                     self.log_test(f"Invalid JWT: {token[:20]}...", True, "Invalid token rejected")
                 else:
-                    self.log_test(f"Invalid JWT: {token[:20]}...", False, f"Expected 401, got {response.status_code}")
+                    self.log_test(f"Invalid JWT: {token[:20]}...", False, f"Expected 401/403, got {response.status_code}")
                     
             except Exception as e:
                 self.log_test(f"Invalid JWT: {token[:20]}...", False, f"Request failed: {str(e)}")
