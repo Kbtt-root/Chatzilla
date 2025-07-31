@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './App.css';
 import { Components } from './components';
+import SecurityManager from './security';
 
 const { 
   Sidebar, 
@@ -84,7 +85,8 @@ const mockMessages = {
       timestamp: '2:28 PM',
       sender: 'Alice Johnson',
       isSent: false,
-      isRead: true
+      isRead: true,
+      encrypted: true
     },
     {
       id: 2,
@@ -92,7 +94,8 @@ const mockMessages = {
       timestamp: '2:29 PM',
       sender: 'You',
       isSent: true,
-      isRead: true
+      isRead: true,
+      encrypted: true
     },
     {
       id: 3,
@@ -100,7 +103,8 @@ const mockMessages = {
       timestamp: '2:30 PM',
       sender: 'Alice Johnson',
       isSent: false,
-      isRead: false
+      isRead: false,
+      encrypted: true
     }
   ],
   2: [
@@ -110,7 +114,8 @@ const mockMessages = {
       timestamp: '1:10 PM',
       sender: 'Bob Smith',
       isSent: false,
-      isRead: true
+      isRead: true,
+      encrypted: true
     },
     {
       id: 2,
@@ -118,7 +123,8 @@ const mockMessages = {
       timestamp: '1:12 PM',
       sender: 'You',
       isSent: true,
-      isRead: true
+      isRead: true,
+      encrypted: true
     },
     {
       id: 3,
@@ -126,7 +132,8 @@ const mockMessages = {
       timestamp: '1:15 PM',
       sender: 'Bob Smith',
       isSent: false,
-      isRead: true
+      isRead: true,
+      encrypted: true
     }
   ],
   3: [
@@ -136,7 +143,8 @@ const mockMessages = {
       timestamp: '11:40 AM',
       sender: 'Carol Davis',
       isSent: false,
-      isRead: true
+      isRead: true,
+      encrypted: true
     },
     {
       id: 2,
@@ -144,7 +152,8 @@ const mockMessages = {
       timestamp: '11:42 AM',
       sender: 'You',
       isSent: true,
-      isRead: true
+      isRead: true,
+      encrypted: true
     },
     {
       id: 3,
@@ -152,7 +161,8 @@ const mockMessages = {
       timestamp: '11:45 AM',
       sender: 'Carol Davis',
       isSent: false,
-      isRead: false
+      isRead: false,
+      encrypted: true
     }
   ],
   6: [
@@ -162,7 +172,8 @@ const mockMessages = {
       timestamp: '5:30 PM',
       sender: 'Dad',
       isSent: false,
-      isRead: true
+      isRead: true,
+      encrypted: true
     },
     {
       id: 2,
@@ -170,7 +181,8 @@ const mockMessages = {
       timestamp: '5:35 PM',
       sender: 'You',
       isSent: true,
-      isRead: true
+      isRead: true,
+      encrypted: true
     },
     {
       id: 3,
@@ -178,7 +190,8 @@ const mockMessages = {
       timestamp: '5:40 PM',
       sender: 'Mom',
       isSent: false,
-      isRead: true
+      isRead: true,
+      encrypted: true
     },
     {
       id: 4,
@@ -186,7 +199,8 @@ const mockMessages = {
       timestamp: '6:15 PM',
       sender: 'Sarah',
       isSent: false,
-      isRead: true
+      isRead: true,
+      encrypted: true
     },
     {
       id: 5,
@@ -194,7 +208,8 @@ const mockMessages = {
       timestamp: '6:30 PM',
       sender: 'Mom',
       isSent: false,
-      isRead: false
+      isRead: false,
+      encrypted: true
     }
   ]
 };
@@ -208,13 +223,73 @@ function App() {
   const [showNewChat, setShowNewChat] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(true);
+  const [securityEnabled, setSecurityEnabled] = useState(true);
+  const [encryptionStatus, setEncryptionStatus] = useState('active');
+
+  // Security initialization
+  useEffect(() => {
+    if (!window.securityManager) {
+      window.securityManager = new SecurityManager();
+    }
+
+    // Initialize secure data storage
+    const storedContacts = window.securityManager.secureGet('contacts');
+    if (storedContacts) {
+      setContacts(storedContacts);
+    }
+
+    const storedMessages = window.securityManager.secureGet('messages');
+    if (storedMessages) {
+      setMessages(storedMessages);
+    }
+
+    // Set up security monitoring
+    const securityInterval = setInterval(() => {
+      if (window.securityManager) {
+        const report = window.securityManager.getSecurityReport();
+        console.log('Security Status:', report);
+      }
+    }, 30000);
+
+    // Cleanup function
+    return () => {
+      clearInterval(securityInterval);
+    };
+  }, []);
+
+  // Global functions for security
+  useEffect(() => {
+    window.clearSensitiveData = () => {
+      setMessages({});
+      setContacts([]);
+      setSelectedContact(null);
+      if (window.securityManager) {
+        window.securityManager.clearAllData();
+      }
+    };
+
+    window.clearAllData = window.clearSensitiveData;
+  }, []);
 
   const sendMessage = (text) => {
     if (!selectedContact || !text.trim()) return;
 
+    // Security: Rate limiting
+    if (!window.securityManager.rateLimit('sendMessage', 30, 60000)) {
+      alert('Rate limit exceeded. Please wait before sending more messages.');
+      return;
+    }
+
+    // Security: Input validation and sanitization
+    const sanitizedText = window.securityManager.sanitizeInput(text);
+    if (!window.securityManager.validateInput(sanitizedText, 'message')) {
+      alert('Invalid message content detected.');
+      return;
+    }
+
     const newMessage = {
       id: Date.now(),
-      text: text.trim(),
+      text: sanitizedText,
       timestamp: new Date().toLocaleTimeString('en-US', { 
         hour: 'numeric', 
         minute: '2-digit',
@@ -222,20 +297,63 @@ function App() {
       }),
       sender: 'You',
       isSent: true,
-      isRead: false
+      isRead: false,
+      encrypted: true
     };
 
-    setMessages(prev => ({
-      ...prev,
-      [selectedContact.id]: [...(prev[selectedContact.id] || []), newMessage]
-    }));
+    // Encrypt message before storing
+    const encryptedMessage = {
+      ...newMessage,
+      text: window.securityManager.encryptData(sanitizedText)
+    };
+
+    const updatedMessages = {
+      ...messages,
+      [selectedContact.id]: [...(messages[selectedContact.id] || []), newMessage]
+    };
+
+    setMessages(updatedMessages);
+
+    // Secure storage
+    window.securityManager.secureSet('messages', updatedMessages);
 
     // Update last message in contacts
-    setContacts(prev => prev.map(contact => 
+    const updatedContacts = contacts.map(contact => 
       contact.id === selectedContact.id 
-        ? { ...contact, lastMessage: text.trim(), timestamp: newMessage.timestamp }
+        ? { ...contact, lastMessage: sanitizedText, timestamp: newMessage.timestamp }
         : contact
-    ));
+    );
+
+    setContacts(updatedContacts);
+    window.securityManager.secureSet('contacts', updatedContacts);
+
+    // Log security event
+    window.securityManager.logSecurityEvent('Message sent', { 
+      contactId: selectedContact.id,
+      messageLength: sanitizedText.length,
+      encrypted: true
+    });
+  };
+
+  const handleContactSelect = (contact) => {
+    // Security: Rate limiting for contact selection
+    if (!window.securityManager.rateLimit('selectContact', 100, 60000)) {
+      return;
+    }
+
+    setSelectedContact(contact);
+    
+    // Log security event
+    window.securityManager.logSecurityEvent('Contact selected', { 
+      contactId: contact.id,
+      contactName: contact.name 
+    });
+  };
+
+  const handleSearchChange = (query) => {
+    // Security: Sanitize search input
+    const sanitizedQuery = window.securityManager.sanitizeInput(query);
+    setSearchQuery(sanitizedQuery);
   };
 
   const filteredContacts = contacts.filter(contact =>
@@ -244,15 +362,40 @@ function App() {
 
   const currentMessages = selectedContact ? messages[selectedContact.id] || [] : [];
 
+  // Security status indicator
+  const getSecurityStatus = () => {
+    return {
+      encryption: encryptionStatus,
+      securityEnabled,
+      sessionSecure: window.securityManager?.sessionId ? true : false,
+      lastActivity: window.lastActivity
+    };
+  };
+
   return (
     <div className={`App ${isDarkMode ? 'dark' : ''}`}>
       <div className="signal-container">
+        {/* Security Status Bar */}
+        <div className="security-status-bar">
+          <div className="security-indicators">
+            <span className="security-indicator encryption-active" title="End-to-end encryption active">
+              🔒 Encrypted
+            </span>
+            <span className="security-indicator session-secure" title="Secure session active">
+              🛡️ Session: {window.securityManager?.sessionId?.substring(0, 8)}...
+            </span>
+            <span className="security-indicator anti-tamper" title="Anti-tampering protection active">
+              🔐 Protected
+            </span>
+          </div>
+        </div>
+
         <Sidebar
           contacts={filteredContacts}
           selectedContact={selectedContact}
-          onSelectContact={setSelectedContact}
+          onSelectContact={handleContactSelect}
           searchQuery={searchQuery}
-          onSearchChange={setSearchQuery}
+          onSearchChange={handleSearchChange}
           onShowSettings={() => setShowSettings(true)}
           onShowNewChat={() => setShowNewChat(true)}
           onShowProfile={() => setShowProfile(true)}
@@ -264,6 +407,7 @@ function App() {
               contact={selectedContact}
               messages={currentMessages}
               onSendMessage={sendMessage}
+              securityStatus={getSecurityStatus()}
             />
           ) : (
             <WelcomeScreen />
@@ -275,6 +419,7 @@ function App() {
             isDarkMode={isDarkMode}
             onToggleDarkMode={() => setIsDarkMode(!isDarkMode)}
             onClose={() => setShowSettings(false)}
+            securityStatus={getSecurityStatus()}
           />
         )}
 

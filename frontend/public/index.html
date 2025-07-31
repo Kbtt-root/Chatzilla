@@ -1,151 +1,293 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="theme-color" content="#000000" />
-        <meta name="description" content="A product of emergent.sh" />
-        <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
-        <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
-
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-        <title>Emergent | Fullstack App</title>
-    </head>
-    <body>
-        <noscript>You need to enable JavaScript to run this app.</noscript>
-        <div id="root"></div>
-        <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
-
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
-        <a
-            id="emergent-badge"
-            target="_blank"
-            href="https://app.emergent.sh/?utm_source=emergent-badge"
-            style="
-                display: flex !important;
-                align-items: center !important;
-                position: fixed !important;
-                bottom: 20px;
-                right: 20px;
-                text-decoration: none;
-                padding: 6px 10px;
-                font-family: -apple-system, BlinkMacSystemFont,
-                    &quot;Segoe UI&quot;, Roboto, Oxygen, Ubuntu, Cantarell,
-                    &quot;Open Sans&quot;, &quot;Helvetica Neue&quot;,
-                    sans-serif !important;
-                font-size: 12px !important;
-                z-index: 9999 !important;
-                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
-                border-radius: 8px !important;
-                background-color: #ffffff !important;
-                border: 1px solid rgba(255, 255, 255, 0.25) !important;
-            "
-        >
-            <div
-                style="display: flex; flex-direction: row; align-items: center"
-            >
-                <img
-                    style="width: 20px; height: 20px; margin-right: 8px"
-                    src="https://avatars.githubusercontent.com/in/1201222?s=120&u=2686cf91179bbafbc7a71bfbc43004cf9ae1acea&v=4"
-                />
-                <p
-                    style="
-                        color: #000000;
-                        font-family: -apple-system, BlinkMacSystemFont,
-                            &quot;Segoe UI&quot;, Roboto, Oxygen, Ubuntu,
-                            Cantarell, &quot;Open Sans&quot;,
-                            &quot;Helvetica Neue&quot;, sans-serif !important;
-                        font-size: 12px !important;
-                        align-items: center;
-                        margin-bottom: 0;
-                    "
-                >
-                    Made with Emergent
-                </p>
-            </div>
-        </a>
-        <script>
-            !(function (t, e) {
-                var o, n, p, r;
-                e.__SV ||
-                    ((window.posthog = e),
-                    (e._i = []),
-                    (e.init = function (i, s, a) {
-                        function g(t, e) {
-                            var o = e.split(".");
-                            2 == o.length && ((t = t[o[0]]), (e = o[1])),
-                                (t[e] = function () {
-                                    t.push(
-                                        [e].concat(
-                                            Array.prototype.slice.call(
-                                                arguments,
-                                                0,
-                                            ),
-                                        ),
-                                    );
-                                });
-                        }
-                        ((p = t.createElement("script")).type =
-                            "text/javascript"),
-                            (p.crossOrigin = "anonymous"),
-                            (p.async = !0),
-                            (p.src =
-                                s.api_host.replace(
-                                    ".i.posthog.com",
-                                    "-assets.i.posthog.com",
-                                ) + "/static/array.js"),
-                            (r =
-                                t.getElementsByTagName(
-                                    "script",
-                                )[0]).parentNode.insertBefore(p, r);
-                        var u = e;
-                        for (
-                            void 0 !== a ? (u = e[a] = []) : (a = "posthog"),
-                                u.people = u.people || [],
-                                u.toString = function (t) {
-                                    var e = "posthog";
-                                    return (
-                                        "posthog" !== a && (e += "." + a),
-                                        t || (e += " (stub)"),
-                                        e
-                                    );
-                                },
-                                u.people.toString = function () {
-                                    return u.toString(1) + ".people (stub)";
-                                },
-                                o =
-                                    "init me ws ys ps bs capture je Di ks register register_once register_for_session unregister unregister_for_session Ps getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSurveysLoaded onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey canRenderSurveyAsync identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty Es $s createPersonProfile Is opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing Ss debug xs getPageViewId captureTraceFeedback captureTraceMetric".split(
-                                        " ",
-                                    ),
-                                n = 0;
-                            n < o.length;
-                            n++
-                        )
-                            g(u, o[n]);
-                        e._i.push([i, s, a]);
-                    }),
-                    (e.__SV = 1));
-            })(document, window.posthog || []);
-            posthog.init("phc_yJW1VjHGGwmCbbrtczfqqNxgBDbhlhOWcdzcIJEOTFE", {
-                api_host: "https://us.i.posthog.com",
-                person_profiles: "identified_only", // or 'always' to create profiles for anonymous users as well
+<head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#3a76f0" />
+    <meta name="description" content="Signal - Secure, Private Messaging" />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    
+    <!-- Security Headers -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+    <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=(), payment=(), usb=(), magnetometer=(), gyroscope=(), accelerometer=()">
+    
+    <!-- Content Security Policy -->
+    <meta http-equiv="Content-Security-Policy" content="
+        default-src 'self';
+        script-src 'self' 'unsafe-inline' 'unsafe-eval';
+        style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+        img-src 'self' data: https://images.unsplash.com https://avatars.githubusercontent.com;
+        font-src 'self' https://fonts.gstatic.com;
+        connect-src 'self' https://api.unsplash.com;
+        frame-ancestors 'none';
+        base-uri 'self';
+        form-action 'self';
+        upgrade-insecure-requests;
+        block-all-mixed-content;
+    ">
+    
+    <!-- Anti-Fingerprinting and Privacy -->
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+    <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+    
+    <!-- Disable right-click context menu -->
+    <style>
+        body {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-touch-callout: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        /* Anti-debugging styles */
+        .devtools-detector {
+            display: none !important;
+        }
+        
+        /* Hide from screen readers for sensitive content */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+    </style>
+    
+    <title>Signal - Private Messenger</title>
+</head>
+<body>
+    <noscript>
+        <div style="padding: 20px; text-align: center; font-family: Arial, sans-serif;">
+            <h2>JavaScript Required</h2>
+            <p>Signal requires JavaScript to function. Please enable JavaScript in your browser settings.</p>
+        </div>
+    </noscript>
+    
+    <!-- Anti-tampering detection -->
+    <div id="integrity-check" style="display: none;"></div>
+    
+    <div id="root"></div>
+    
+    <!-- Security Scripts -->
+    <script>
+        // Anti-debugging measures
+        (function() {
+            'use strict';
+            
+            // Disable right-click context menu
+            document.addEventListener('contextmenu', function(e) {
+                e.preventDefault();
+                return false;
             });
-        </script>
-    </body>
+            
+            // Disable key combinations (F12, Ctrl+Shift+I, etc.)
+            document.addEventListener('keydown', function(e) {
+                // F12
+                if (e.keyCode === 123) {
+                    e.preventDefault();
+                    return false;
+                }
+                // Ctrl+Shift+I, Ctrl+Shift+C, Ctrl+Shift+J
+                if (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 67 || e.keyCode === 74)) {
+                    e.preventDefault();
+                    return false;
+                }
+                // Ctrl+U (view source)
+                if (e.ctrlKey && e.keyCode === 85) {
+                    e.preventDefault();
+                    return false;
+                }
+                // Ctrl+S (save page)
+                if (e.ctrlKey && e.keyCode === 83) {
+                    e.preventDefault();
+                    return false;
+                }
+            });
+            
+            // DevTools detection
+            let devtools = {
+                opened: false,
+                orientation: null
+            };
+            
+            const threshold = 160;
+            
+            setInterval(function() {
+                if (window.outerHeight - window.innerHeight > threshold || 
+                    window.outerWidth - window.innerWidth > threshold) {
+                    if (!devtools.opened) {
+                        devtools.opened = true;
+                        // Clear sensitive data when devtools detected
+                        if (typeof window.clearSensitiveData === 'function') {
+                            window.clearSensitiveData();
+                        }
+                        // Redirect or show warning
+                        document.body.innerHTML = '<div style="padding: 40px; text-align: center; font-family: Arial, sans-serif;"><h2>Security Warning</h2><p>Developer tools detected. For security reasons, this session has been terminated.</p></div>';
+                    }
+                } else {
+                    devtools.opened = false;
+                }
+            }, 500);
+            
+            // Anti-debugger
+            setInterval(function() {
+                debugger;
+            }, 1000);
+            
+            // Console warning
+            console.warn('%cSTOP!', 'color: red; font-size: 50px; font-weight: bold;');
+            console.warn('%cThis is a browser feature intended for developers. If someone told you to copy-paste something here to enable a Signal feature or "hack" someone\'s account, it is a scam and will give them access to your Signal account.', 'color: red; font-size: 16px;');
+            
+            // Memory protection - clear clipboard periodically
+            setInterval(function() {
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    navigator.clipboard.writeText('').catch(() => {});
+                }
+            }, 30000);
+            
+            // Integrity check
+            window.integrityCheck = function() {
+                const scripts = document.getElementsByTagName('script');
+                const links = document.getElementsByTagName('link');
+                let modified = false;
+                
+                // Check for unauthorized modifications
+                for (let script of scripts) {
+                    if (script.src && !script.src.includes(window.location.origin)) {
+                        if (!script.src.includes('unsplash.com') && !script.src.includes('fonts.googleapis.com')) {
+                            modified = true;
+                        }
+                    }
+                }
+                
+                if (modified) {
+                    document.body.innerHTML = '<div style="padding: 40px; text-align: center; font-family: Arial, sans-serif;"><h2>Security Breach Detected</h2><p>Unauthorized modifications detected. Session terminated.</p></div>';
+                }
+            };
+            
+            // Run integrity check periodically
+            setInterval(window.integrityCheck, 5000);
+            
+        })();
+        
+        // Anti-fingerprinting measures
+        (function() {
+            // Spoof canvas fingerprinting
+            const getContext = HTMLCanvasElement.prototype.getContext;
+            HTMLCanvasElement.prototype.getContext = function(contextType) {
+                if (contextType === '2d' || contextType === 'webgl' || contextType === 'webgl2') {
+                    const context = getContext.call(this, contextType);
+                    if (context) {
+                        // Add noise to prevent fingerprinting
+                        const originalGetImageData = context.getImageData;
+                        if (originalGetImageData) {
+                            context.getImageData = function() {
+                                const imageData = originalGetImageData.apply(this, arguments);
+                                // Add subtle noise
+                                for (let i = 0; i < imageData.data.length; i += 4) {
+                                    imageData.data[i] += Math.random() * 2 - 1;
+                                    imageData.data[i + 1] += Math.random() * 2 - 1;
+                                    imageData.data[i + 2] += Math.random() * 2 - 1;
+                                }
+                                return imageData;
+                            };
+                        }
+                    }
+                    return context;
+                }
+                return getContext.call(this, contextType);
+            };
+            
+            // Spoof WebGL fingerprinting
+            if (window.WebGLRenderingContext) {
+                const getParameter = WebGLRenderingContext.prototype.getParameter;
+                WebGLRenderingContext.prototype.getParameter = function(parameter) {
+                    // Return spoofed values for common fingerprinting parameters
+                    if (parameter === this.RENDERER) {
+                        return 'Signal Secure Renderer';
+                    }
+                    if (parameter === this.VENDOR) {
+                        return 'Signal Security';
+                    }
+                    return getParameter.call(this, parameter);
+                };
+            }
+            
+            // Spoof screen dimensions
+            Object.defineProperty(screen, 'width', {
+                get: function() { return 1920; }
+            });
+            Object.defineProperty(screen, 'height', {
+                get: function() { return 1080; }
+            });
+            Object.defineProperty(screen, 'availWidth', {
+                get: function() { return 1920; }
+            });
+            Object.defineProperty(screen, 'availHeight', {
+                get: function() { return 1040; }
+            });
+            
+            // Spoof timezone
+            Date.prototype.getTimezoneOffset = function() {
+                return 0; // UTC
+            };
+            
+            // Disable battery API
+            if (navigator.getBattery) {
+                navigator.getBattery = undefined;
+            }
+            
+            // Disable gamepad API
+            if (navigator.getGamepads) {
+                navigator.getGamepads = function() { return []; };
+            }
+            
+            // Limit navigator properties
+            Object.defineProperty(navigator, 'plugins', {
+                get: function() { return []; }
+            });
+            Object.defineProperty(navigator, 'mimeTypes', {
+                get: function() { return []; }
+            });
+            
+        })();
+        
+        // Session management
+        window.sessionTimeout = 15 * 60 * 1000; // 15 minutes
+        window.lastActivity = Date.now();
+        
+        function resetSessionTimer() {
+            window.lastActivity = Date.now();
+        }
+        
+        // Monitor user activity
+        ['mousedown', 'mousemove', 'keypress', 'scroll', 'touchstart', 'click'].forEach(function(event) {
+            document.addEventListener(event, resetSessionTimer, true);
+        });
+        
+        // Check session timeout
+        setInterval(function() {
+            if (Date.now() - window.lastActivity > window.sessionTimeout) {
+                // Session expired - clear data and redirect
+                if (typeof window.clearAllData === 'function') {
+                    window.clearAllData();
+                }
+                document.body.innerHTML = '<div style="padding: 40px; text-align: center; font-family: Arial, sans-serif;"><h2>Session Expired</h2><p>Your session has expired for security reasons. Please refresh to continue.</p><button onclick="location.reload()">Refresh</button></div>';
+            }
+        }, 60000);
+        
+    </script>
+</body>
 </html>
