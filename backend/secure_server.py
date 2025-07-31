@@ -94,7 +94,7 @@ api_router = APIRouter(prefix="/api")
 # Enhanced Pydantic models with validation
 class UserCreate(BaseModel):
     username: str = Field(..., min_length=3, max_length=30)
-    email: str = Field(..., regex=r'^[^@]+@[^@]+\.[^@]+$')
+    email: str = Field(..., pattern=r'^[^@]+@[^@]+\.[^@]+$')
     password: str = Field(..., min_length=8, max_length=100)
     
     @validator('username')
