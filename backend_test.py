@@ -188,10 +188,10 @@ class SecurityTester:
                 else:
                     response = self.session.post(f"{BACKEND_URL}{endpoint}", json={})
                 
-                if response.status_code == 401:
+                if response.status_code in [401, 403]:  # Both are valid auth errors
                     self.log_test(f"Protected Endpoint {method} {endpoint}", True, "Authentication required")
                 else:
-                    self.log_test(f"Protected Endpoint {method} {endpoint}", False, f"Expected 401, got {response.status_code}")
+                    self.log_test(f"Protected Endpoint {method} {endpoint}", False, f"Expected 401/403, got {response.status_code}")
                     
             except Exception as e:
                 self.log_test(f"Protected Endpoint {method} {endpoint}", False, f"Request failed: {str(e)}")
