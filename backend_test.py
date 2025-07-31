@@ -103,7 +103,7 @@ class SecurityTester:
         try:
             # Test valid registration
             user_data = {
-                "username": "alice_smith",
+                "username": "Alice Smith",  # Fixed: no underscore, only letters and spaces
                 "email": "alice.smith@example.com", 
                 "password": "SecurePass123!"
             }
